@@ -1,6 +1,6 @@
 VERSION ?= $(shell cat VERSION)
 
-IMG_REPO ?= jieyu
+IMG_REPO ?= rafaelcalleja
 IMG_TAG ?= $(VERSION)
 
 all: kind-node

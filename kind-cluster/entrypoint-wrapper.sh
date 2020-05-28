@@ -12,7 +12,7 @@ echo "Setting up KIND cluster"
 
 # Startup a KIND cluster.
 API_SERVER_ADDRESS=${API_SERVER_ADDRESS:-"127.0.0.1"}
-sed -i "s/apiServerAddress:$/apiServerAddress: ${API_SERVER_ADDRESS}/" kind-config.yaml
+sed -i "s/.*apiServerAddress.*/  apiServerAddress: ${API_SERVER_ADDRESS}/" kind-config.yaml
 
 CERT_SANS=(${CERT_SANS:-""})
 CERT_SANS+=(${API_SERVER_ADDRESS})
@@ -34,6 +34,6 @@ cat <<EOF >> kind-config.yaml
 EOF
 done
 
-kind create cluster --config=kind-config.yaml --image=${KIND_NODE_IMAGE-"jieyu/kind-node:v1.17.0"} --wait=900s
+kind create cluster --config=kind-config.yaml --image=${KIND_NODE_IMAGE-"rafaelcalleja/kind-node:v1.18.2"} --wait=900s
 
 exec "$@"
